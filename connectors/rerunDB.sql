@@ -647,7 +647,7 @@ VALUES
     (21, 1),
     (21, 2),
     (21, 3),
-    (21, 4)
+    (21, 4),
     (2, 21),
     (3, 21),
     (4, 21);
@@ -682,13 +682,3 @@ VALUES
   (17, 4, '2023-08-27', 'Booked', 2);
 
 
-1. United States
-2. Canada
-3. United Kingdom
-4. Australia
-5. Germany
-6. France
-7. Japan
-8. Brazil
-9. Spain
-10. Italy
