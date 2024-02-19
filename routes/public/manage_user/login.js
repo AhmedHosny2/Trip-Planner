@@ -3,7 +3,7 @@ const db = require('../../../connectors/db.js');
 const bodyParser = require('body-parser');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-
+const domain = process.env.DOMAIN;
 function verifyPassword(password, hash, salt) {
 	const verifyHash = crypto.pbkdf2Sync(password, salt, 1000, 64, 'sha512').toString('hex');
 	return verifyHash === hash;
@@ -88,8 +88,15 @@ module.exports = function (app) {
 					}
 				}
 			}
-						
-			return res.cookie('jwt', token).status(200).json([type, avatar]);
+			res.cookie("jwt", token, {
+				expires: nextWeek,
+				httpOnly: true,
+				sameSite: "none",
+				secure: true,
+				domain,
+				path: "/",
+			  });	
+			return res.status(200).json([type, avatar]);
 		} catch (err) {
 			console.log(err.message);
 			return res.status(400).send('Could not login user');
