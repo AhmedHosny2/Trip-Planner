@@ -12,7 +12,9 @@ app.use(
     credentials: true, // If you need to support credentials (cookies, authorization headers, etc.)
   })
 );
-
+app.get("/health", (req, res) => {
+  res.send("Server is running");
+});
 //public routes
 const planTrip = require("./routes/public/tripPlan/planTrip.js");
 const chatBot = require("./routes/public/chatBot/chatBot.js");
@@ -163,6 +165,7 @@ getPost(app);
 getCompanyRequests(app);
 
 // storeImage(app);
+// health check 
 
 // 404 Error Handling
 app.use((req, res, next) => {
@@ -175,3 +178,4 @@ app.listen(process.env.BACKENDURL || 3001, () => {
     `Server is now listening at port ${process.env.BACKENDURL} on http://localhost:${process.env.BACKENDURL}/`
   );
 });
+
